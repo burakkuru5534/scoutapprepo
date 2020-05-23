@@ -2,19 +2,26 @@ import React from 'react';
 import {Text,View,StyleSheet,TouchableOpacity} from 'react-native';
 import {Spinner} from './spinner';
 
-const MyButton = ({spinner,text,onPress}) => {
+const MyButton = ({spinner,text,onPress,color,backgroundColor}) => {
+    
+    let {buttonTextStyle} = styles;
+    buttonTextStyle = {...buttonTextStyle,color:color || 'white'};
 
     const content = spinner ? (<Spinner/>) :
-     (<TouchableOpacity onPress={onPress}>
-          <Text style={styles.buttonTextStyle}>
+     (<TouchableOpacity onPress={onPress} color={color} backgroundColor={backgroundColor}>
+          <Text style={buttonTextStyle}>
             {text}
         </Text>
      </TouchableOpacity>
               
      )
 
+     let { buttonWrapper } = styles;
+     buttonWrapper = {...buttonWrapper,backgroundColor:backgroundColor || '#ddbb00'};
+
+
     return(
-        <View style={styles.ButtonWrapper }>
+        <View style={buttonWrapper }>
             {content}
         </View>
     )
@@ -22,19 +29,20 @@ const MyButton = ({spinner,text,onPress}) => {
 
 const styles = StyleSheet.create({
 
-    ButtonWrapper: {
+    buttonWrapper: {
 
         marginTop: 10,
         alignSelf: 'center',
         width: 300,
+        borderRadius:100,
+        
+        
     },
     buttonTextStyle: {
         borderWidth: 1,
         padding: 25,
-        backgroundColor: '#ddbb00',
         borderRadius: 100,
         textAlign: 'center',
-        color: 'white',
         fontSize: 20
     },
 })

@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
-import { Image, View, Linking, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
-import { Input, Input2, Spinner,myButton, MyButton } from './common';
+import { Image, View, Linking, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, KeyboardAvoidingView } from 'react-native';
+import { Input, Input2, Spinner, myButton, MyButton } from './common';
 import firebase from 'firebase';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import SignUpForm from './SigUpForm';
 import ForgotPasswordPage from './ForgotPasswordPage';
-import {emailChanged,passwordChanged,loginUser} from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
 
 class LoginForm extends Component {
-   
+
 
     LoginButtonClicked() {
         const { email, password } = this.props;
-       
-       this.props.loginUser(email,password);
+
+        this.props.loginUser(email, password);
     }
 
-    ForgotPasswordButtonClicked(){
-       return(
-        <ForgotPasswordPage/>
-       );
+    ForgotPasswordButtonClicked() {
+        return (
+            <ForgotPasswordPage />
+        );
     }
-    
-    SignUpButtonClicked(){
-        return  <SignUpForm/>
+
+    SignUpButtonClicked() {
+        return <SignUpForm />
     }
 
 
-    onEmailChanged(text){
+    onEmailChanged(text) {
         this.props.emailChanged(text);
 
     }
 
-    onPasswordChanged(text){
+    onPasswordChanged(text) {
         this.props.passwordChanged(text);
 
     }
@@ -48,21 +48,23 @@ class LoginForm extends Component {
         ) :
             null;
 
-            
-            const ForgotPasswordButton = loading ? (
-                <Spinner/>
-            ) : (
+
+        const ForgotPasswordButton = loading ? (
+            <Spinner />
+        ) : (
                 <TouchableOpacity onPress={this.ForgotPasswordButtonClicked.bind(this)}>
-                <Text style={styles.buttonTextStyle}>
-                    Forgot Password?
+                    <Text style={styles.buttonTextStyle}>
+                        Forgot Password?
                 </Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>
             );
-        
+
         return (
-            
-            <ImageBackground source={require('../images/background2.jpg')} style={{ padding: 30, paddingTop: 400,flex:1,justifyContent:'center' }}>
+            <ScrollView>
+                 <ImageBackground source={require('../images/background2.jpg')} style={{ padding: 30, paddingTop: '70%', flex: 1, justifyContent: 'center' }}>
+                
+
                 <View>
 
                     <Input
@@ -85,13 +87,14 @@ class LoginForm extends Component {
                 {errorMsg}
 
                 <MyButton onPress={this.LoginButtonClicked.bind(this)}
-                          text='Sign In'
-                          spinner={loading}
+                    text='Sign In'
+                    spinner={loading}
+                    
                 />
 
                 <View>
                     <Text style={styles.ForgotPasswordStyle} onPress={
-                        ()=>{this.ForgotPasswordButtonClicked.bind(this)}}>Forgot Password?</Text>
+                        () => { this.ForgotPasswordButtonClicked.bind(this) }}>Forgot Password?</Text>
 
                 </View>
 
@@ -100,6 +103,9 @@ class LoginForm extends Component {
                 </View>
 
             </ImageBackground>
+            </ScrollView>
+           
+
 
         );
     }
@@ -152,11 +158,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    const {email,password,loading,error} = state.auth;
-    return{
-        email,password,loading,error
+    const { email, password, loading, error } = state.auth;
+    return {
+        email, password, loading, error
     }
 }
 
 
-export default connect(mapStateToProps,{emailChanged,passwordChanged,loginUser})(LoginForm);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);

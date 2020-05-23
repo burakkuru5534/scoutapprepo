@@ -5,7 +5,6 @@ import { StyleSheet } from 'react-native';
 import Players from './components/players'
 import UpdatePlayer from './components/updatePlayer';
 import NewPlayer from './components/newPlayer';
-import PlayerDetails from './components/playerDetails';
 const RouterComp = () => {
     return (
 
@@ -26,10 +25,6 @@ const RouterComp = () => {
 
                     <Scene key='players'
                         component={Players}
-                        leftTitle='MyPlayers'
-                        title='Players'
-                        titleStyle={{ paddingLeft: '30%', color: '#ddbb00' }}
-                        onLeft={() => Actions.updateplayer()}
                         rightTitle='New Player'
                         onRight={() => Actions.newplayer()} />
                          
@@ -43,9 +38,7 @@ const RouterComp = () => {
                         component={UpdatePlayer}
                         title='Update Player' />
                     
-                     <Scene key='playerdetails'
-                        component={PlayerDetails}
-                        title='Player Details' />
+                    
 
                 </Scene>
 

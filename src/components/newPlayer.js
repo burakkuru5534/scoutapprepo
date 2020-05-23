@@ -52,7 +52,7 @@ class NewPlayer extends Component {
 
         return(
             <ImageBackground source={require('../images/background6.jpg')} style={{flex:1,paddingLeft:10,paddingRight:10}}>
-                <ScrollView>
+                <ScrollView style={{marginBottom:50}}>
                     <Image style={{marginTop:100,alignSelf:'center'}} source={require('../images/player.jpg')}>
 
                     </Image>

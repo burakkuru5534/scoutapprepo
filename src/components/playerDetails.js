@@ -113,11 +113,11 @@ const styles = StyleSheet.create({
     },
 
     detailStyle:{
-        fontSize:22,
+        fontSize:15,
         color:'#ddaa00'
     },
     infoStyle:{
-        fontSize:22,
+        fontSize:15,
         color:'#1122ff'
     },
     userStyle:{

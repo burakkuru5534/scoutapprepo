@@ -4,7 +4,7 @@ import {StyleSheet,View,Text,TouchableOpacity, ImageBackground} from 'react-nati
 import {connect} from 'react-redux';
 import {fetchPlayer} from '../actions';
 import { FlatList } from 'react-native-gesture-handler';
-import { MainCard} from './common';
+import { DetailCard} from './common';
 import {Actions} from 'react-native-router-flux';
 class Players extends Component {
 
@@ -20,11 +20,11 @@ renderItem({item}) {
 
         <TouchableOpacity key={item.uid} 
                           onPress={()=>{
-                              Actions.playerdetails({
+                              Actions.updateplayer({
                                   player:item
                               })
                           }}  >
-            <MainCard>
+            <DetailCard>
                 <View style={styles.detailWrapper}>
                         <Text style={styles.detailStyle}>
                         Player Name: 
@@ -52,11 +52,53 @@ renderItem({item}) {
                         </Text>
                         <Text style={styles.infoStyle}> {item.value}</Text>
                 </View>
+                <View style={styles.detailWrapper}>
+                        <Text style={styles.detailStyle}>
+                        Player Age: 
+                        </Text>
+                        <Text style={styles.infoStyle}> {item.age}</Text>
+                </View>
+                <View style={styles.detailWrapper}>
+                        <Text style={styles.detailStyle}>
+                        Player Strong Foot: 
+                        </Text>
+                        <Text style={styles.infoStyle}> {item.foot}</Text>
+                </View>
+                <View style={styles.detailWrapper}>
+                        <Text style={styles.detailStyle}>
+                        Player National Team: 
+                        </Text>
+                        <Text style={styles.infoStyle}> {item.nationalteam}</Text>
+                </View>
+                <View style={styles.detailWrapper}>
+                        <Text style={styles.detailStyle}>
+                        Player Goal in this season: 
+                        </Text>
+                        <Text style={styles.infoStyle}> {item.goal}</Text>
+                </View>
+                <View style={styles.detailWrapper}>
+                        <Text style={styles.detailStyle}>
+                        Player asist in this season: 
+                        </Text>
+                        <Text style={styles.infoStyle}> {item.asist}</Text>
+                </View>
+                <View style={styles.detailWrapper}>
+                        <Text style={styles.detailStyle}>
+                        Player Contract End Date: 
+                        </Text>
+                        <Text style={styles.infoStyle}> {item.contract}</Text>
+                </View>
+                <View style={styles.detailWrapper}>
+                        <Text style={styles.detailStyle}>
+                        Player Scouting Start Date: 
+                        </Text>
+                        <Text style={styles.infoStyle}> {item.scoutingdate}</Text>
+                </View>
                 
                 <Text style={styles.idStyle}>
                     Kullanıcı:{item.email}
                 </Text>
-            </MainCard>
+            </DetailCard>
         </TouchableOpacity>
     )
 }
@@ -94,11 +136,11 @@ const styles = StyleSheet.create({
     },
 
     detailStyle:{
-        fontSize:22,
+        fontSize:15,
         color:'#ddaa00'
     },
     infoStyle:{
-        fontSize:22,
+        fontSize:15,
         color:'#1122ff'
     },
 
@@ -118,10 +160,11 @@ const mapStateToProps= state => {
     const playerList= _.map(state.playerList,(val,uid)=>{
         return {...val, uid}
     });
-    console.log(playerList);
         return {
+            
             playerList
         }
+        
 }
 
 export default connect(mapStateToProps,{fetchPlayer})(Players);

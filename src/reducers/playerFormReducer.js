@@ -1,7 +1,22 @@
 
-import {NAME_CHANGED,TEAM_CHANGED,POSITION_CHANGED,VALUE_CHANGED,AGE_CHANGED, FOOT_CHANGED,NATIONAL_TEAM_CHANGED,GOAL_CHANGED,ASIST_CHANGED,CONTRACT_CHANGED,SCOUTING_CHANGED, SEND_PLAYER} from '../actions'
+import {NAME_CHANGED,
+    TEAM_CHANGED,
+    POSITION_CHANGED,
+    VALUE_CHANGED,
+    AGE_CHANGED,
+     FOOT_CHANGED,
+     NATIONAL_TEAM_CHANGED,
+     GOAL_CHANGED,
+     ASIST_CHANGED,
+     CONTRACT_CHANGED,
+     SCOUTING_CHANGED, 
+     SEND_PLAYER,
+      UPDATE_PLAYER,
+      DELETE_PLAYER,
+      } from '../actions'
 
 const INITIAL_STATE={
+    player:{},
     name:'',
     team:'',
     position:'',
@@ -57,6 +72,12 @@ export default (state=INITIAL_STATE,action) =>{
 
         case SEND_PLAYER:
             return {...state, ...INITIAL_STATE}
+        
+        case UPDATE_PLAYER:
+            return {...state, ...INITIAL_STATE}
+        case DELETE_PLAYER:
+            return {...state, ...INITIAL_STATE}
+
 
         default:
             return state;

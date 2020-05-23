@@ -16,6 +16,9 @@ export const SCOUTING_CHANGED='scouting_changed';
 export const SEND_PLAYER='send_player';
 export const FETCH_PLAYER='fetch_player';
 
+export const UPDATE_PLAYER='update_player';
+export const DELETE_PLAYER='delete_player';
+
 const REF_DATABASE = '/players';
 
 
@@ -126,6 +129,38 @@ export const fetchPlayer = () =>{
                 type:FETCH_PLAYER,
                 payload:snapshot.val()
             })
+        })
+    }
+}
+
+export const updatePlayer = ({age,asist,contract,foot,goal,name,nationalteam,position,scoutingdate,team,value,uid,email}) => {
+    return dispatch => {
+        firebase.database().ref(REF_DATABASE+'/'+uid)
+        .set({
+            age,asist,contract,foot,goal,name,nationalteam,position,scoutingdate,team,value,email
+        })
+        .then(()=>{
+            Actions.main();
+            dispatch({
+                type:UPDATE_PLAYER
+            })
+        })
+
+    }
+
+}
+
+export const deletePlayer = (uid) =>{
+
+    return dispatch => {
+        firebase.database().ref(REF_DATABASE+'/'+uid)
+        .remove()
+        .then(()=>{
+            Actions.main();
+            dispatch({
+                type:DELETE_PLAYER
+            })
+
         })
     }
 }
